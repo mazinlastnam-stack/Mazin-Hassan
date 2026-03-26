@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0f1a, #03060c);
+            font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .dashboard {
+            max-width: 1400px;
+            width: 100%;
+            background: rgba(19, 19, 19, 0.75);
+            backdrop-filter: blur(2px);
+            border: 2px solid #4397FF;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+        }
+   
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #101214, #1b1e24);
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: 1px solid #2c3e5c;
+        }
+
+        .img { width: 80px; height: 80px; border: 2px solid #4397FF; border-radius: 50%; overflow: hidden; }
+        .img img { width: 100%; height: 100%; object-fit: cover; }
+        h1 { font-weight: 800; font-size: 1.8rem; color: #eef5ff; }
+        
+       p {
+    margin-top: 20px;
+    text-align: center;
+    color: #eef5ff;
+    font-weight: 800; 
+    font-style: italic;
+    opacity: 0.8;
+    border-top: 1px solid rgba(67, 151, 255, 0.2);
+    padding-top: 15px;
+}
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 22px;
+            transition: all 0.5s ease;
+        }
+
+        /* تنسيق البطاقة الأساسي */
+        .module-card {
+            background: linear-gradient(135deg, #1f324b, #132231);
+            border-radius: 24px;
+            padding: 25px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #2c4b70;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .module-icon { font-size: 3rem; color: #6db3ff; transition: 0.3s; }
+        .module-card span { font-weight: 700; color: #eef5ff; }
+
+        /* منطقة التفاصيل (مخفية افتراضياً) */
+        .details {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.4s ease;
+            width: 100%;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #4397FF;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(67, 151, 255, 0.4);
+        }
+
+        /* حالة البطاقة النشطة (المضغوطة) */
+        .module-card.active {
+            transform: scale(1.1);
+            border-color: #4397FF;
+            background: #1e3c5c;
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+
+        .module-card.active .details {
+            max-height: 100px;
+            opacity: 1;
+        }
+
+        /* حالة البطاقات الأخرى عند وجود بطاقة نشطة */
+        .modules-grid.has-active .module-card:not(.active) {
+            transform: scale(0.85);
+            opacity: 0.4;
+            filter: blur(1px);
+        }
+
+    </style>
+    <title>Mazin Hassan - Dashboard</title>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="top-header">
+            <div class="img"><img src="1773718350893.png" alt="Mazin"></div>
+            <h1>Mazin Hassan</h1>
+        </div> 
+        
+        <div class="modules-grid" id="grid">
+            <div class="module-card" onclick="toggleCard(this)">
+                <div class="module-icon"><i class="fab fa-whatsapp"></i></div>
+                <span>WhatsApp</span>
+                <div class="details">
+                    <a href="https://wa.me/249115169965" class="contact-btn">تواصل الآن</a>
+                </div>
+            </div>
+
+            <div class="module-card" onclick="toggleCard(this)">
+                <div class="module-icon"><i class="fab fa-facebook"></i></div>
+                <span>Facebook</span>
+                <div class="details">
+                    <a href="https://www.facebook.com/share/181yvSPLfR/" class="contact-btn">زيارة الصفحة</a>
+                </div>
+            </div>
+
+            <div class="module-card" onclick="toggleCard(this)">
+                <div class="module-icon"><i class="fab fa-tiktok"></i></div>
+                <span>TikTok</span>
+                <div class="details">
+                    <a href="https://tiktok.com/@mazin.hassan025" class="contact-btn">مشاهدة المقاطع</a>
+                </div>
+            </div>
+
+            <div class="module-card" onclick="toggleCard(this)">
+                <div class="module-icon"><i class="fab fa-instagram"></i></div>
+                <span>Instagram</span>
+                <div class="details">
+                    <a href="https://www.instagram.com/mazin_hassan09?igsh=MXMyZHM4MGR4d2s3YQ==" class="contact-btn">تابعني هناك</a>
+                </div>
+            </div>
+        </div>
+        <p>الابتسامة لا تعني الفرح، بل القدرة على اخفاء الحطام دون أن تنهار</p>
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            const grid = document.getElementById('grid');
+            const isActive = card.classList.contains('active');
+
+            // إزالة الحالة النشطة من الجميع أولاً
+            document.querySelectorAll('.module-card').forEach(c => {
+                c.classList.remove('active');
+            });
+
+            // إذا لم تكن البطاقة نشطة، فعلها
+            if (!isActive) {
+                card.classList.add('active');
+                grid.classList.add('has-active');
+            } else {
+                grid.classList.remove('has-active');
+            }
+        }
+
+        // إغلاق البطاقة عند الضغط في أي مكان خارجها
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.module-card')) {
+                document.querySelectorAll('.module-card').forEach(c => c.classList.remove('active'));
+                document.getElementById('grid').classList.remove('has-active');
+            }
+        });
+    </script>
+</body>
+</html>
